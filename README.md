@@ -2,8 +2,8 @@
 
 Role-specific plugins make Codex easier to customize for a team's day-to-day work.
 These templates package domain-specific skills, connector bindings, and starter
-assets so teams can adapt Codex for roles like sales, data analytics, product
-design, and financial markets. They were built with OpenAI subject matter
+assets so teams can adapt Codex for roles like sales, data analytics, and product
+design. They were built with OpenAI subject matter
 experts around workflows that are already helping teams move faster internally
 and with alpha partners. Over the coming weeks, we'll continue expanding this
 collection with more roles, workflows, and examples.
@@ -19,7 +19,6 @@ available to the target workspace.
 | [Sales](./plugins/sales) | Prepare for meetings, follow up after calls, review pipeline, find account context, and build deal plans. | Salesforce, HubSpot, Slack, Google Drive, Gmail, Outlook, Outreach, Clay, ZoomInfo, and other sales tools |
 | [Data Analytics](./plugins/data-analytics) | Query, visualize, explain, and validate datasets; build dashboards; and investigate metrics. | Databricks, Snowflake, BigQuery, Hex, Amplitude, Mixpanel, Statsig, Metabase, ThoughtSpot, Google Drive, Slack, Microsoft 365, and more |
 | [Product Design](./plugins/product-design) | Create product specs, prototypes, UI critiques, and product design artifacts. | Sites |
-| [Financial Markets](./plugins/financial-markets) | Build public-equity research, earnings analysis, valuation work, model updates, long/short pitches, risk reviews, dashboards, and investment memos. | FactSet, LSEG, Morningstar, Daloopa, Quartr, S&P, PitchBook, Slack, Google Drive, Gmail, SharePoint, Teams, and more |
 
 ## Repository Layout
 
@@ -29,8 +28,7 @@ available to the target workspace.
 `-- plugins/
     |-- sales/
     |-- data-analytics/
-    |-- product-design/
-    `-- financial-markets/
+    `-- product-design/
 ```
 
 Each plugin generally follows this structure:

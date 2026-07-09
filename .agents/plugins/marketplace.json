@@ -39,18 +39,6 @@
         "authentication": "ON_USE"
       },
       "category": "Design"
-    },
-    {
-      "name": "financial-markets",
-      "source": {
-        "source": "local",
-        "path": "./plugins/financial-markets"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_USE"
-      },
-      "category": "Business"
     }
   ]
 }
