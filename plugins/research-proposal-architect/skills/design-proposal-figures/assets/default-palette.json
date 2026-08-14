@@ -1,0 +1,21 @@
+{
+  "name": "research-proposal-default",
+  "version": 1,
+  "roles": {
+    "structure": "#1769C2",
+    "structure_light": "#DCE8F6",
+    "knowledge": "#E3F0D5",
+    "validation": "#F6C38B",
+    "neutral": "#F4F6F8",
+    "text": "#17202A",
+    "connector": "#243447",
+    "feedback": "#C43D36",
+    "canvas": "#FFFFFF"
+  },
+  "rules": {
+    "feedback_is_accent_only": true,
+    "gradients_allowed": false,
+    "decorative_black_backgrounds_allowed": false,
+    "maximum_primary_hierarchy_levels": 3
+  }
+}

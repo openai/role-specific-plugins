@@ -1,0 +1,4 @@
+interface:
+  display_name: "申报范式提炼"
+  short_description: "Extract reusable writing and figure patterns from proposals."
+  default_prompt: "Use $distill-proposal-patterns to extract reusable writing and figure patterns from a proposal."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研申报任务路由"
+  short_description: "Route Chinese proposal writing, figure, and audit tasks."
+  default_prompt: "Use $route-proposal-work to identify and route my Chinese research proposal task."
