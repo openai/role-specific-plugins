@@ -1,0 +1,4 @@
+interface:
+  display_name: "研究内容与技术路线写作"
+  short_description: "Draft layered Chinese research and technical route sections."
+  default_prompt: "Use $write-research-sections to draft the requested research content or technical route section."

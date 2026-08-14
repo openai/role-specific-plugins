@@ -1,0 +1,4 @@
+interface:
+  display_name: "科研申报配图设计"
+  short_description: "Design editable figures from Chinese proposal research text."
+  default_prompt: "Use $design-proposal-figures to design an editable proposal figure from my research text."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "申报书图文一致性审校"
+  short_description: "Audit and correct proposal text-to-figure correspondence."
+  default_prompt: "Use $audit-proposal-alignment to audit and correct text-figure correspondence."

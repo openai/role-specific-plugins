@@ -1,0 +1,42 @@
+{
+  "target": "branch_research",
+  "message": "研究高质量行业数据构建的三个互补子问题及其集成关系。",
+  "reading_order": "top-to-bottom",
+  "regions": [
+    {
+      "id": "objective",
+      "role": "topic_objective",
+      "text": "高质量行业数据构建"
+    },
+    {
+      "id": "task-1",
+      "role": "research_task",
+      "text": "多源数据治理与质量感知",
+      "claim_ids": ["c1"]
+    },
+    {
+      "id": "task-2",
+      "role": "research_task",
+      "text": "低成本标注与场景适配",
+      "claim_ids": ["c2"]
+    },
+    {
+      "id": "task-3",
+      "role": "research_task",
+      "text": "反馈诊断与版本迭代",
+      "claim_ids": ["c3"]
+    },
+    {
+      "id": "integration",
+      "role": "integrated_output",
+      "text": "可持续更新的高质量数据底座",
+      "claim_ids": ["c4"]
+    }
+  ],
+  "relationships": [
+    {"source": "task-1", "target": "integration", "type": "contribution"},
+    {"source": "task-2", "target": "integration", "type": "contribution"},
+    {"source": "task-3", "target": "task-1", "type": "feedback"},
+    {"source": "task-3", "target": "task-2", "type": "feedback"}
+  ]
+}

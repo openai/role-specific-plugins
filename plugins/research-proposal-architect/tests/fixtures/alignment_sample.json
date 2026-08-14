@@ -1,0 +1,41 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "构建统一数据底座",
+      "required_terms": ["统一数据底座"],
+      "required": true,
+      "relationships": [
+        {"target": "c2", "type": "support"}
+      ]
+    },
+    {
+      "id": "c2",
+      "text": "形成跨场景认知能力，准确率不低于90%",
+      "required_terms": ["跨场景认知"],
+      "metrics": ["不低于90%"],
+      "required": true
+    }
+  ],
+  "figure_objects": [
+    {
+      "id": "n1",
+      "text": "统一数据底座",
+      "claim_ids": ["c1"],
+      "semantic": true
+    },
+    {
+      "id": "n2",
+      "text": "跨场景认知能力；准确率不低于90%",
+      "claim_ids": ["c2"],
+      "semantic": true
+    }
+  ],
+  "figure_relations": [
+    {
+      "source_claim": "c1",
+      "target_claim": "c2",
+      "type": "support"
+    }
+  ]
+}

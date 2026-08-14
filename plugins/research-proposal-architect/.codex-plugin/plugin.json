@@ -1,0 +1,37 @@
+{
+  "name": "research-proposal-architect",
+  "version": "0.1.0",
+  "description": "Write, diagram, and audit Chinese science and technology proposal research sections.",
+  "author": {
+    "name": "Wang LangPing",
+    "url": "https://github.com/JackBlack419"
+  },
+  "homepage": "https://github.com/JackBlack419/research-proposal-architect#readme",
+  "repository": "https://github.com/JackBlack419/research-proposal-architect",
+  "license": "MIT",
+  "keywords": [
+    "research-proposal",
+    "grant-writing",
+    "technical-roadmap",
+    "scientific-illustration",
+    "chinese-proposal"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Research Proposal Architect",
+    "shortDescription": "Write, diagram, and audit Chinese research proposals.",
+    "longDescription": "Routes Chinese science and technology proposal work across five content levels and three operations. It drafts research sections, creates backend-neutral figure specifications, checks text-figure correspondence, and hands editable figure construction to Scientific Illustrator.",
+    "developerName": "Wang LangPing",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "\u5e2e\u6211\u5224\u65ad\u8fd9\u6bb5\u7533\u62a5\u4e66\u5e94\u5199\u7814\u7a76\u5185\u5bb9\u8fd8\u662f\u6280\u672f\u8def\u7ebf\u3002",
+      "\u6839\u636e\u8fd9\u6bb5\u7814\u7a76\u5185\u5bb9\u8bbe\u8ba1\u4e00\u5f20\u53ef\u7f16\u8f91\u7684\u6280\u672f\u8def\u7ebf\u56fe\u3002",
+      "\u68c0\u67e5\u7533\u62a5\u4e66\u6587\u5b57\u4e0e\u914d\u56fe\u662f\u5426\u5b8c\u6574\u5bf9\u5e94\u5e76\u7ed9\u51fa\u6821\u6b63\u7ed3\u679c\u3002"
+    ],
+    "brandColor": "#1769C2"
+  }
+}
