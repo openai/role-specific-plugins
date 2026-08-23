@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "gbr": {
+      "command": "node",
+      "args": [
+        "GrokBuildRemote-Agents/mcp/gbr-mcp/bin/gbr-mcp.js"
+      ],
+      "description": "Build Remote Agent Bot API (loopback). Requires gbr-agent run. Never put mailbox keys here."
+    }
+  }
+}

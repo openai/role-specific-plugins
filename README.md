@@ -19,6 +19,7 @@ available to the target workspace.
 | [Sales](./plugins/sales) | Prepare for meetings, follow up after calls, review pipeline, find account context, and build deal plans. | Salesforce, HubSpot, Slack, Google Drive, Gmail, Outlook, Outreach, Clay, ZoomInfo, and other sales tools |
 | [Data Analytics](./plugins/data-analytics) | Query, visualize, explain, and validate datasets; build dashboards; and investigate metrics. | Databricks, Snowflake, BigQuery, Hex, Amplitude, Mixpanel, Statsig, Metabase, ThoughtSpot, Google Drive, Slack, Microsoft 365, and more |
 | [Product Design](./plugins/product-design) | Create product specs, prototypes, UI critiques, and product design artifacts. | Sites |
+| [Build Remote Agent](./plugins/gbr) | Pair a phone as spectator to a local Codex session (`gbr-agent` QR / 8-char, attach `127.0.0.1:8788` or gbr-mcp). | none |
 
 ## Repository Layout
 
@@ -28,7 +29,8 @@ available to the target workspace.
 `-- plugins/
     |-- sales/
     |-- data-analytics/
-    `-- product-design/
+    |-- product-design/
+    `-- gbr/
 ```
 
 Each plugin generally follows this structure:
