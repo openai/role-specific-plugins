@@ -1,0 +1,44 @@
+{
+  "name": "gbr",
+  "version": "0.6.1",
+  "description": "Pair a phone running Build Remote Agent to a local Codex session. Phone is spectator plus veto. Attach only via 127.0.0.1:8788 or gbr-mcp after gbr-agent run.",
+  "author": {
+    "name": "Linespotting AB",
+    "email": "info@linespotting.com",
+    "url": "https://grokbuildremote.com/"
+  },
+  "homepage": "https://grokbuildremote.com/",
+  "repository": "https://github.com/LinespottingOrg/GrokBuildRemote-Agents",
+  "license": "MIT",
+  "keywords": [
+    "build-remote-agent",
+    "gbr",
+    "pairing",
+    "phone",
+    "spectator",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Build Remote Agent",
+    "shortDescription": "Phone spectator for a local Codex session",
+    "longDescription": "Pair the Build Remote Agent phone app to this desktop Codex session through free MIT gbr-agent. Scan the QR or type the 8-char code, keep gbr-agent run, then attach at 127.0.0.1:8788 or gbr-mcp. The phone spectates and can veto; it does not orchestrate. Independent product. Not affiliated with xAI or SpaceX.",
+    "developerName": "Linespotting AB",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://grokbuildremote.com/",
+    "privacyPolicyURL": "https://linespotting.com/privacy-policy/",
+    "termsOfServiceURL": "https://grokbuildremote.com/",
+    "defaultPrompt": [
+      "Pair my phone with Build Remote Agent",
+      "Check gbr-agent health on 127.0.0.1:8788",
+      "How do I attach gbr-mcp to this session?"
+    ],
+    "brandColor": "#111827",
+    "screenshots": []
+  }
+}
