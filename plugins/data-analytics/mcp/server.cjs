@@ -1173,6 +1173,10 @@ function chartEncodingFields(chart, role) {
   return Array.isArray(fields) ? fields.filter((field) => typeof field === "string" && field.trim()) : [];
 }
 
+function chartTooltipEncodings(chart) {
+  return Array.isArray(chart?.encodings?.tooltip) ? chart.encodings.tooltip : [];
+}
+
 function hasChartEncodingSpec(chart) {
   return Boolean(
     isPlainObject(chart.encodings) &&
@@ -1208,7 +1212,7 @@ function validateChartEncodingSpec(chart, fieldPath, { requireType = false } = {
   for (const role of ["color", "size", "facet", "label"]) {
     validateIdentifier(chartEncodingField(chart, role), `${fieldPath}.encodings.${role}.field`);
   }
-  asList(chartEncoding(chart, "tooltip")).forEach((tooltip, index) => {
+  chartTooltipEncodings(chart).forEach((tooltip, index) => {
     if (!isPlainObject(tooltip)) throw new Error(`${fieldPath}.encodings.tooltip[${index}] must be an object`);
     validateIdentifier(tooltip.field, `${fieldPath}.encodings.tooltip[${index}].field`);
   });
@@ -1673,6 +1677,71 @@ function validateArtifactDatasetReferences(manifest, snapshot) {
   }
 }
 
+function validateArtifactFieldReference(rows, field, fieldPath) {
+  if (!rows.length || typeof field !== "string" || !field.trim()) return;
+  if (!rows.some((row) => Object.prototype.hasOwnProperty.call(row, field))) {
+    throw new Error(
+      `${fieldPath} references ${JSON.stringify(field)}, but no sampled row contains that field.`,
+    );
+  }
+}
+
+function validateArtifactFieldReferences(manifest, snapshot) {
+  const datasets = snapshot.datasets || {};
+  const rowsFor = (dataset) => asList(datasets[dataset]).filter(isPlainObject);
+
+  asList(manifest.charts).forEach((chart, index) => {
+    if (!isPlainObject(chart)) return;
+    const rows = rowsFor(chart.dataset);
+    if (!rows.length || !hasChartEncodingSpec(chart)) return;
+    const fields = [
+      [chartEncodingField(chart, "x"), `$.manifest.charts[${index}].encodings.x.field`],
+      [chartEncodingField(chart, "y"), `$.manifest.charts[${index}].encodings.y.field`],
+      ...chartEncodingFields(chart, "y").map((field, fieldIndex) => [
+        field,
+        `$.manifest.charts[${index}].encodings.y.fields[${fieldIndex}]`,
+      ]),
+      ...["color", "size", "facet", "label", "lineStyle"].map((role) => [
+        chartEncodingField(chart, role),
+        `$.manifest.charts[${index}].encodings.${role}.field`,
+      ]),
+      ...chartTooltipEncodings(chart).map((tooltip, tooltipIndex) => [
+        isPlainObject(tooltip) ? tooltip.field : null,
+        `$.manifest.charts[${index}].encodings.tooltip[${tooltipIndex}].field`,
+      ]),
+    ];
+    fields.forEach(([field, fieldPath]) => validateArtifactFieldReference(rows, field, fieldPath));
+  });
+
+  asList(manifest.cards).forEach((card, index) => {
+    if (!isPlainObject(card)) return;
+    const rows = rowsFor(card.dataset);
+    if (!rows.length) return;
+    asList(card.metrics).forEach((metric, metricIndex) => {
+      if (!isPlainObject(metric)) return;
+      validateArtifactFieldReference(
+        rows,
+        metric.field,
+        `$.manifest.cards[${index}].metrics[${metricIndex}].field`,
+      );
+    });
+  });
+
+  asList(manifest.tables).forEach((table, index) => {
+    if (!isPlainObject(table)) return;
+    const rows = rowsFor(table.dataset);
+    if (!rows.length) return;
+    asList(table.columns).forEach((column, columnIndex) => {
+      if (!isPlainObject(column)) return;
+      validateArtifactFieldReference(
+        rows,
+        column.field,
+        `$.manifest.tables[${index}].columns[${columnIndex}].field`,
+      );
+    });
+  });
+}
+
 function validateArtifactChartDataCompatibility(manifest, snapshot) {
   const datasets = snapshot.datasets || {};
   asList(manifest.charts).forEach((chart, index) => {
@@ -1759,6 +1828,7 @@ function validateArtifactPayload(payload) {
   validateArtifactSnapshot(payload.snapshot);
   validateArtifactDatasetReferences(payload.manifest, payload.snapshot);
   validateArtifactChartDataCompatibility(payload.manifest, payload.snapshot);
+  validateArtifactFieldReferences(payload.manifest, payload.snapshot);
   validateArtifactSources(payload);
   validateArtifactSourceQueries(payload.manifest, payload.sources);
   const encoded = JSON.stringify(payload);

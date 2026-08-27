@@ -332,6 +332,80 @@ test("JavaScript MCP server validates artifact payloads without widget metadata"
   assert.equal(rpcPayload.result._meta, undefined);
 });
 
+test("JavaScript MCP server rejects artifact table fields absent from sampled rows", () => {
+  const args = artifactPayload("report");
+  args.manifest.tables[0].columns.push({ field: "problem", label: "Problem" });
+
+  assert.throws(
+    () => server.callTool("validate_artifact", args),
+    /manifest\.tables\[0\]\.columns\[2\]\.field references "problem", but no sampled row contains that field/,
+  );
+});
+
+test("JavaScript MCP server rejects artifact card fields absent from sampled rows", () => {
+  const args = artifactPayload("dashboard");
+  args.manifest.cards[0].metrics.push({
+    label: "Missing metric",
+    field: "missing_metric",
+    format: "number",
+  });
+
+  assert.throws(
+    () => server.callTool("validate_artifact", args),
+    /manifest\.cards\[0\]\.metrics\[1\]\.field references "missing_metric", but no sampled row contains that field/,
+  );
+});
+
+test("JavaScript MCP server rejects artifact chart grouping fields absent from sampled rows", () => {
+  const args = artifactPayload("report");
+  args.manifest.charts[0].encodings.color = { field: "missing_group", type: "nominal" };
+
+  assert.throws(
+    () => server.callTool("validate_artifact", args),
+    /manifest\.charts\[0\]\.encodings\.color\.field references "missing_group", but no sampled row contains that field/,
+  );
+});
+
+test("JavaScript MCP server rejects artifact chart line style fields absent from sampled rows", () => {
+  const args = artifactPayload("report");
+  args.manifest.charts[0].encodings.lineStyle = { field: "missing_style", type: "nominal" };
+
+  assert.throws(
+    () => server.callTool("validate_artifact", args),
+    /manifest\.charts\[0\]\.encodings\.lineStyle\.field references "missing_style", but no sampled row contains that field/,
+  );
+});
+
+test("JavaScript MCP server rejects artifact chart tooltip fields absent from sampled rows", () => {
+  const args = artifactPayload("report");
+  args.manifest.charts[0].encodings.tooltip = [
+    { field: "segment", type: "nominal" },
+    { field: "missing_tooltip", type: "quantitative" },
+  ];
+
+  assert.throws(
+    () => server.callTool("validate_artifact", args),
+    /manifest\.charts\[0\]\.encodings\.tooltip\[1\]\.field references "missing_tooltip", but no sampled row contains that field/,
+  );
+});
+
+test("JavaScript MCP artifact field references may appear in only one sampled row", () => {
+  const args = artifactPayload("report");
+  args.snapshot.datasets.weekly_revenue[0].optional_note = "present";
+  args.manifest.tables[0].columns.push({ field: "optional_note", label: "Optional note" });
+
+  const payload = server.callTool("validate_artifact", args);
+  assert.equal(payload.ok, true);
+});
+
+test("JavaScript MCP artifact field validation permits empty datasets", () => {
+  const args = artifactPayload("report");
+  args.snapshot.datasets.weekly_revenue = [];
+
+  const payload = server.callTool("validate_artifact", args);
+  assert.equal(payload.ok, true);
+});
+
 test("JavaScript MCP server rejects artifact chart y encodings without numeric values", () => {
   const args = artifactPayload("report");
   args.manifest.charts[0] = {
@@ -514,8 +588,8 @@ test("JavaScript MCP server leaves percent chart scale to the manifest data cont
   args.manifest.charts[0].valueFormat = "percent";
   args.manifest.charts[0].encodings.y = { field: "share", type: "quantitative" };
   args.snapshot.datasets.weekly_revenue = [
-    { segment: "Alpha", share: 2.0 },
-    { segment: "Beta", share: 0.851 },
+    { segment: "Alpha", revenue_m: 12, share: 2.0 },
+    { segment: "Beta", revenue_m: 18, share: 0.851 },
   ];
 
   assert.equal(server.callTool("validate_artifact", args).ok, true);
