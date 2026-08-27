@@ -1,0 +1,40 @@
+{
+  "name": "ai-security",
+  "version": "0.1.0",
+  "description": "AI security workflows for Codex using HOL Guard to protect local tool execution, review approvals, inspect evidence, and verify agent packages before release.",
+  "author": {
+    "name": "Hashgraph Online",
+    "url": "https://hol.org/guard"
+  },
+  "homepage": "https://hol.org/guard",
+  "repository": "https://github.com/openai/role-specific-plugins/tree/main/plugins/ai-security",
+  "license": "MIT",
+  "keywords": [
+    "ai security",
+    "hol guard",
+    "codex",
+    "tool security",
+    "prompt injection",
+    "agent security"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AI Security",
+    "shortDescription": "Protect Codex tool execution with HOL Guard",
+    "longDescription": "Set up and operate HOL Guard for Codex. Protect tool execution, inspect Guard status, review blocked or pending approvals, collect receipts and evidence, and verify plugins, skills, and MCP packages before release.",
+    "developerName": "Hashgraph Online",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://hol.org/guard",
+    "defaultPrompt": [
+      "Set up HOL Guard for this Codex workspace",
+      "Check whether this Codex workspace is protected by HOL Guard",
+      "Review blocked HOL Guard requests and show me the evidence"
+    ],
+    "screenshots": []
+  }
+}
