@@ -17,10 +17,10 @@ Use HOL Guard when a Codex workspace needs a local security boundary around tool
 
 ## Install
 
-Check for the runtime:
+Check for the runtime by invoking the CLI directly:
 
 ```bash
-command -v hol-guard
+hol-guard --version
 ```
 
 If it is missing, prefer an isolated CLI installation:
@@ -98,10 +98,10 @@ hol-guard sync
 
 ## Verify Codex plugins, skills, and MCP packages
 
-HOL Guard ships separately from the plugin scanner. Check the scanner independently:
+HOL Guard ships separately from the plugin scanner. Check the scanner independently by invoking its CLI directly:
 
 ```bash
-command -v plugin-scanner
+plugin-scanner --version
 ```
 
 If it is missing and package verification is requested:
