@@ -1,5 +1,13 @@
 # Role-Specific Plugins
 
+> [!IMPORTANT]
+> **Archived on September 16, 2026 — no longer maintained.**
+> These public reference snapshots of the Sales, Data Analytics, and Product Design plugins have become outdated. We are retiring this repository because we do not have an ongoing maintenance process to keep these examples current.
+>
+> The repository remains available as a read-only historical reference so existing source and links are preserved. Its contents may not reflect current plugin behavior, schemas, or authoring practices and should not be treated as current guidance. This archive applies to this reference repository; it does not retire the plugins themselves.
+>
+> The original documentation below is preserved for historical context. Statements about future updates and accepting contributions are no longer applicable.
+
 Role-specific plugins make Codex easier to customize for a team's day-to-day work.
 These templates package domain-specific skills, connector bindings, and starter
 assets so teams can adapt Codex for roles like sales, data analytics, and
